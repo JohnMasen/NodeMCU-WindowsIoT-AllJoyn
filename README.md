@@ -1,2 +1,4 @@
 # NodeMCU-WindowsIoT-AllJoyn
-a lightweight framework to create and bind your NodeMCU based device to AllJoyn network
+
+This is a lightweight framework to connect NodeMCU based device to your AllJoyn network.
+it uses Windows IoT as device bridge to route the MQTT message between NodeMCU device and Alljoyn network
