@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightMQTTServer", "LightMQTTServer\LightMQTTServer.csproj", "{0FE336E1-66D9-40B0-837E-331C800C2C35}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DE9DF03-9190-4F27-AF6E-2C99CA555B03}"
+	ProjectSection(SolutionItems) = preProject
+		NodeMCU\cmdParser.lua = NodeMCU\cmdParser.lua
+		NodeMCU\MQTTDevice.lua = NodeMCU\MQTTDevice.lua
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
