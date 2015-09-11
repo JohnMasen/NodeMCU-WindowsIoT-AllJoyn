@@ -49,6 +49,8 @@ function MQTTDevice:onConnected()
     self:log("connected")
     self.client:subscribe(self.baseAddress,0)
     self:log("listening on ",self.baseAddress)
+    self.client:publish("/MQTTDevice/SignIn",self.baseAddress,0,0)
+    self:log("device sign in complete")
 end
 
 function MQTTDevice:onOffline()
@@ -83,9 +85,10 @@ function MQTTDevice:processCommand(cmd,name,para,callback)
         end
         local value=self.properties[name].read()
         if value then
-            self.client:publish(callback,value,0,0)
+            self.client:publish(callback,cjson.encode({name=name,value=value}),0,0)
             self:log("value sent",value,callback)
         end
+        return
     end
     if string.lower(cmd)=="write" then
         if not self.properties[name] then 
@@ -101,6 +104,7 @@ function MQTTDevice:processCommand(cmd,name,para,callback)
             return
         end
         local value=self.properties[name].write(para)
+        return
     end    
     if string.lower(cmd)=="call" then
         if not self.methods[name] then 
@@ -110,6 +114,7 @@ function MQTTDevice:processCommand(cmd,name,para,callback)
         local value=self.methods[name].invoke(para)
         value=value or "SUCCESS"
         self.client:publish(callback,value,0,0)
+        return
     end
 end
 
